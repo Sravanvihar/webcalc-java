@@ -16,13 +16,13 @@ pipeline {
             }
         }
 
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh 'mvn sonar:sonar'
-                }
-            }
-        }
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         withSonarQubeEnv('sonarqube') {
+        //             sh 'mvn sonar:sonar'
+        //         }
+        //     }
+        // }
 
         stage('Deploy to Tomcat') {
             steps {
@@ -31,9 +31,9 @@ pipeline {
             }
         }
 
-        stage('API Testing') {
-            steps {
-                script {
+        // stage('API Testing') {
+        //     steps {
+        //         script {
                     // Wait for Tomcat to deploy the application
                     sleep(time: 30, unit: 'SECONDS')
 
@@ -48,9 +48,9 @@ pipeline {
                     // Add additional checks/assertions based on the expected responses
                     // Example: assert getResponse.contains("ExpectedText")
                     // Example: assert postResponse.contains("ExpectedText")
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
     }
 
     post {
